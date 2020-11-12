@@ -90,7 +90,7 @@ echo
 if [[ $REPLY =~ ^[Yy]$ ]]
 then
   sudo apt-get install -y xclip
-fiBASEDIR
+fi
 
 # Tmux
 echo
@@ -208,10 +208,12 @@ if [[ $REPLY =~ ^[Yy]$ ]]
 then
   git clone https://github.com/sherlock-project/sherlock.git "$SRCDIR"/sherlock
   cd "$SRCDIR"/sherlock || exit
+  sudo apt-get install -y python3-pip
   python3 -m pip install -r requirements.txt
   cd "$HOME" || exit
 
   ln -s "$BASEDIR"/bash_/sherlock.bash "$BASHDIR"/sherlock.bash
 fi
 
+sudo apt-get autoremove -y
 source "$HOME"/.bashrc
