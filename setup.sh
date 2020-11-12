@@ -13,13 +13,13 @@ SRCDIR=$HOME/src
 mkdir -p $BASHDIR
 mkdir -p $SRCDIR
 
-rm $HOME/.bashrc
-ln -s $BASEDIR/.bashrc $HOME/.bashrc
-ln -s $BASEDIR/bash_/aliases.bash $BASHDIR/aliases.bash
-
 cd $SRCDIR
 git clone https://github.com/swordf1zh/dotfiles.git
 cd $HOME
+
+rm $HOME/.bashrc
+ln -s $BASEDIR/.bashrc $HOME/.bashrc
+ln -s $BASEDIR/bash_/aliases.bash $BASHDIR/aliases.bash
 
 read -p 'Do you want to install Ubuntu Restricted Extras? (y/n) ' -n 1 -r
 if [[ $REPLY =~ ^[Yy]$ ]]
