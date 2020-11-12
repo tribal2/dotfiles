@@ -1,12 +1,14 @@
+#!/usr/bin/bash
+
 alias c="clear"
 alias h='history'
+alias hg='history | grep -i'
 alias :q="exit"
 alias ..="cd .."
 
-alias home="cd ~"
 alias dev="cd ~/dev"
 
-alias findx="find /home/swordf1zh -iname"
+alias findx="find $HOME -iname"
 alias follow="tail -f -n +1"
 alias biggest="du -h --max-depth=1 | sort -h"
 alias sizes="du -shc"
@@ -48,7 +50,44 @@ alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
 
-# Add an "alert" alias for long running commands.  Use like so:
-#   sleep 10; alert
-alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(h$
+# Go to manpage parameter description (eg: $ mans ls -l)
+function mans {
+  man $1 | less -p "^ +$2"
+}
 
+# GOOGLER
+alias googler='googler -n7'
+
+# SHERLOCK
+alias sherlock='python3 $HOME/src/sherlock/sherlock --site facebook --site instagram --site twitter --site youtube --site linkedin --output /dev/null'
+
+# BAT
+if [ "$(command -v batcat)" ]; then
+  alias bat='batcat'
+  alias cat='batcat -pp'
+
+  battail() {
+    tail -f $1 | batcat --paging=never -l log
+  }
+
+fi
+
+
+# EXA
+if [ "$(command -v exa)" ]; then
+    unalias 'll'
+    unalias 'ls'
+    alias ls='exa -Ga --group-directories-first --color auto --icons -s type'
+    alias ll='exa -laagh --group-directories-first --color always --color-scale --icons -s type'
+
+    ltree() {
+      if [ -z $1 ]; then
+        echo "Debe especificar un valor numérico para la profundidad del árbol. (Usando un valor de 1 por defecto)"
+	PROF=1
+      else
+	PROF=$1
+      fi
+
+      exa -agh -T -L $PROF $2
+    }
+fi

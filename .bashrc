@@ -147,36 +147,18 @@ pointerC="${txtgrn}"
 normalC="${txtwht}"
 
 # Red name for root
-if [ "${UID}" -eq "0" ]; then 
-  nameC="${txtred}" 
+if [ "${UID}" -eq "0" ]; then
+  nameC="${txtred}"
 fi
 
 # Patent Pending Prompt
 export PS1="${nameC}\u${atC}@${hostC}\h:${pathC}\w${gitC}\$(gitPrompt)${pointerC}\$${normalC} "
 
 # Local settings go last
-if [ -f ~/.localrc ]; then 
+if [ -f ~/.localrc ]; then
   source ~/.localrc
 fi
 
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f '/home/swordf1zh/google-cloud-sdk/path.bash.inc' ]; then . '/home/swordf1zh/google-cloud-sdk/path.bash.inc'; fi
-
-# The next line enables shell command completion for gcloud.
-if [ -f '/home/swordf1zh/google-cloud-sdk/completion.bash.inc' ]; then . '/home/swordf1zh/google-cloud-sdk/completion.bash.inc'; fi
-
-# Configuración para FuzzyFinder (fzf)
-[ -f ~/.fzf.bash ] && source ~/.fzf.bash
-#export FZF_DEFAULT_OPTS='--preview "bat --style=numbers --color=always {} | head -100" --height 60% --layout=reverse --border'
-export FZF_DEFAULT_OPTS="
-  --preview ' \
-    ([[ -d {} ]] && tree -C {}) \
-    || ([[ -f {} ]] && bat --style=full --color=always {}) \
-    || echo {}'
-  --height 60%
-  --layout=reverse
-  --border"
-#export FZF_DEFAULT_COMMAND="fd . $HOME"
-export FZF_DEFAULT_COMMAND='fd --type f'
-export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
-export FZF_ALT_C_COMMAND="fd -t d . $HOME"
+for FILE in ~/.config/bash/*; do
+  source $FILE;
+done
