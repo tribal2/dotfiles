@@ -1,27 +1,35 @@
 #!/usr/bin/bash
 
-sudo apt-get update -y
-sudo apt-get upgrade -y
+echo
+read -p 'Do you want to update your system? (y/n) ' -n 1 -r
+echo
+if [[ $REPLY =~ ^[Yy]$ ]]
+then
+  sudo apt-get update -y
+  sudo apt-get upgrade -y
+fi
 
 sudo apt-get install -y git
 
-BASEDIR=$(dirname "$0")
 CONFDIR=$HOME/.config
 BASHDIR=$CONFDIR/bash
 SRCDIR=$HOME/src
+BASEDIR=$SRCDIR/dotfiles
 
-mkdir -p $BASHDIR
-mkdir -p $SRCDIR
+mkdir -p "$BASHDIR"
+mkdir -p "$SRCDIR"
 
-cd $SRCDIR
+cd "$SRCDIR" || exit
 git clone https://github.com/swordf1zh/dotfiles.git
-cd $HOME
+cd "$HOME" || exit
 
-rm $HOME/.bashrc
-ln -s $BASEDIR/.bashrc $HOME/.bashrc
-ln -s $BASEDIR/bash_/aliases.bash $BASHDIR/aliases.bash
+rm "$HOME"/.bashrc
+ln -s "$BASEDIR"/.bashrc "$HOME"/.bashrc
+ln -s "$BASEDIR"/bash_/aliases.bash "$BASHDIR"/aliases.bash
 
+echo
 read -p 'Do you want to install Ubuntu Restricted Extras? (y/n) ' -n 1 -r
+echo
 if [[ $REPLY =~ ^[Yy]$ ]]
 then
   sudo apt-get install ubuntu-restricted-extras
@@ -29,7 +37,9 @@ fi
 
 # TERMINAL
 # Alacritty
+echo
 read -p 'Do you want to install Alacritty? (y/n) ' -n 1 -r
+echo
 if [[ $REPLY =~ ^[Yy]$ ]]
 then
   sudo add-apt-repository ppa:mmstick76/alacritty
@@ -37,61 +47,75 @@ then
   sudo apt-get install -y alacritty
 
 
-  mkdir -p $CONFDIR/alacritty
-  ln -s $BASEDIR/alacritty.yml $CONFDIR/alacritty/alacritty.yml
+  mkdir -p "$CONFDIR"/alacritty
+  ln -s "$BASEDIR"/alacritty.yml "$CONFDIR"/alacritty/alacritty.yml
 fi
 
 # Starship
+echo
 read -p 'Do you want to install Starship? (y/n) ' -n 1 -r
+echo
 if [[ $REPLY =~ ^[Yy]$ ]]
 then
   curl -fsSL https://starship.rs/install.sh | sudo bash
 
-  ln -s $BASEDIR/starship.toml $CONFDIR/starship.toml
-  ln -s $BASEDIR/bash_/starship.bash $BASHDIR/starship.bash
+  ln -s "$BASEDIR"/starship.toml "$CONFDIR"/starship.toml
+  ln -s "$BASEDIR"/bash_/starship.bash "$BASHDIR"/starship.bash
 fi
 
 # Ripgrep
+echo
 read -p 'Do you want to install Ripgrep? (y/n) ' -n 1 -r
+echo
 if [[ $REPLY =~ ^[Yy]$ ]]
 then
   sudo apt-get install -y ripgrep
 fi
 
 # Fzf [https://github.com/junegunn/fzf]
+echo
 read -p 'Do you want to install FuzzyFinder (fzf)? (y/n) ' -n 1 -r
+echo
 if [[ $REPLY =~ ^[Yy]$ ]]
 then
   sudo apt-get install -y fzf
 
-  ln -s $BASEDIR/bash_/fzf.bash $BASHDIR/fzf.bash
+  ln -s "$BASEDIR"/bash_/fzf.bash "$BASHDIR"/fzf.bash
 fi
 
 # Xclip
+echo
 read -p 'Do you want to install Xclip? (y/n) ' -n 1 -r
+echo
 if [[ $REPLY =~ ^[Yy]$ ]]
 then
   sudo apt-get install -y xclip
-fi
+fiBASEDIR
 
 # Tmux
+echo
 read -p 'Do you want to install Tmux? (y/n) ' -n 1 -r
+echo
 if [[ $REPLY =~ ^[Yy]$ ]]
 then
   sudo apt-get install -y tmux
 fi
 
 # Bat
+echo
 read -p 'Do you want to install Bat? (y/n) ' -n 1 -r
+echo
 if [[ $REPLY =~ ^[Yy]$ ]]
 then
   sudo apt-get install -y bat
 
-  ln -s $BASEDIR/bash_/bat.bash $BASHDIR/bat.bash
+  ln -s "$BASEDIR"/bash_/bat.bash "$BASHDIR"/bat.bash
 fi
 
 # Exa [https://github.com/ogham/exa]
+echo
 read -p 'Do you want to install Exa? (y/n) ' -n 1 -r
+echo
 if [[ $REPLY =~ ^[Yy]$ ]]
 then
   curl -fLo /tmp/exa.zip \
@@ -101,13 +125,15 @@ then
   sudo mv /tmp/exa-linux-x86_64 /usr/local/bin/exa
 
   sudo curl -fLo /usr/share/man/man1/exa.1 --create-dirs \
-    https://raw.githubusercontent.com/ogham/exa/master/contrib/man/exa.1
+    https://raw.githubusercontent.com/ogham/exa/master/man/exa.1.md
 
-  ln -s $BASEDIR/bash_/exa.bash $BASHDIR/exa.bash
+  ln -s "$BASEDIR"/bash_/exa.bash "$BASHDIR"/exa.bash
 fi
 
 # TLDR (tealdeer) [https://github.com/dbrgn/tealdeer]
+echo
 read -p 'Do you want to install Tealdeer (tldr)? (y/n) ' -n 1 -r
+echo
 if [[ $REPLY =~ ^[Yy]$ ]]
 then
   sudo curl -fLo /usr/local/bin/tldr \
@@ -119,19 +145,23 @@ then
 fi
 
 # Googler
+echo
 read -p 'Do you want to install Googler? (y/n) ' -n 1 -r
+echo
 if [[ $REPLY =~ ^[Yy]$ ]]
 then
   sudo apt-get install -y googler
-  curl -fLo $CONFDIR/bash/googler \
+  curl -fLo "$CONFDIR"/bash/googler \
     https://raw.githubusercontent.com/jarun/googler/master/auto-completion/googler_at/googler_at
 
-  ln -s $BASEDIR/bash_/googler.bash $BASHDIR/googler.bash
+  ln -s "$BASEDIR"/bash_/googler.bash "$BASHDIR"/googler.bash
 fi
 
 # NEOVIM
 # Instalación
+echo
 read -p 'Do you want to install Neovim? (y/n) ' -n 1 -r
+echo
 if [[ $REPLY =~ ^[Yy]$ ]]
 then
   sudo snap install nvim --beta --classic
@@ -143,38 +173,45 @@ then
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
   # Aplicamos configuraciones
-  mkdir -p $CONFDIR/nvim
-  ln -s $BASEDIR/init.vim $CONFDIR/nvim/init.vim
+  mkdir -p "$CONFDIR"/nvim
+  ln -s "$BASEDIR"/init.vim "$CONFDIR"/nvim/init.vim
 
   # Neovim instalar plugins
   nvim -c :PlugInstall -c :q -c :q
 fi
 
 # POWERLINE FONTS
+echo
 read -p 'Do you want to install PowerlineFonts? (y/n) ' -n 1 -r
+echo
 if [[ $REPLY =~ ^[Yy]$ ]]
 then
-  git clone https://github.com/powerline/fonts.git $SRCDIR/powerline-fonts
-  sudo $SRCDIR/powerline-fonts/install.sh
+  git clone https://github.com/powerline/fonts.git "$SRCDIR"/powerline-fonts
+  sudo "$SRCDIR"/powerline-fonts/install.sh
 fi
 
 # FX [https://github.com/antonmedv/fx]
+echo
 read -p 'Do you want to install Fx JSON viewer? (y/n) ' -n 1 -r
+echo
 if [[ $REPLY =~ ^[Yy]$ ]]
 then
+  #@todo 0 Instalar Node
   sudo npm install -g fx
 fi
 
 # SHERLOCK [https://github.com/sherlock-project/sherlock]
+echo
 read -p 'Do you want to install Sherlock? (y/n) ' -n 1 -r
+echo
 if [[ $REPLY =~ ^[Yy]$ ]]
 then
-  sudo npm install -g fxgit clone https://github.com/sherlock-project/sherlock.git $SRCDIR/sherlock
-  cd $SRCDIR/sherlock
+  git clone https://github.com/sherlock-project/sherlock.git "$SRCDIR"/sherlock
+  cd "$SRCDIR"/sherlock || exit
   python3 -m pip install -r requirements.txt
-  cd $HOME
+  cd "$HOME" || exit
 
-  ln -s $BASEDIR/bash_/sherlock.bash $BASHDIR/sherlock.bash
+  ln -s "$BASEDIR"/bash_/sherlock.bash "$BASHDIR"/sherlock.bash
 fi
 
-source $HOME/.bashrc
+source "$HOME"/.bashrc
