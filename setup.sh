@@ -185,6 +185,9 @@ then
 
   # Neovim instalar plugins
   nvim -c :PlugInstall -c :q -c :q
+
+
+  ln -s "$BASEDIR"/bash_/nvim.bash "$BASHDIR"/nvim.bash
 fi
 
 # POWERLINE FONTS
