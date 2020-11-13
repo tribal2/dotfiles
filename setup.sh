@@ -225,5 +225,44 @@ then
   ln -s "$BASEDIR"/bash_/sherlock.bash "$BASHDIR"/sherlock.bash
 fi
 
+# SPEEDTEST
+echo
+read -p 'Do you want to install Speedtest? (y/n) ' -n 1 -r
+echo
+if [[ $REPLY =~ ^[Yy]$ ]]
+then
+  sudo apt-get install -y gnupg1 apt-transport-https dirmngr
+  sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 379CE192D401AB61
+  echo \
+    "deb https://ookla.bintray.com/debian generic main" \
+    | sudo tee  /etc/apt/sources.list.d/speedtest.list
+  sudo apt-get update -y
+  sudo apt-get install -y speedtest
+fi
+
 sudo apt-get autoremove -y
 source "$HOME"/.bashrc
+
+# SOFTWARE
+# VSCODIUM
+echo
+read -p 'Do you want to install VSCodium? (y/n) ' -n 1 -r
+echo
+if [[ $REPLY =~ ^[Yy]$ ]]
+then
+  # Add the GPG key of the repository
+  wget \
+    -qO - \
+    https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/raw/master/pub.gpg \
+    | gpg --dearmor \
+    | sudo dd of=/etc/apt/trusted.gpg.d/vscodium.gpg
+
+  # Add the repository
+  echo \
+    'deb https://paulcarroty.gitlab.io/vscodium-deb-rpm-repo/debs/ vscodium main' \
+    | sudo tee --append /etc/apt/sources.list.d/vscodium.list
+
+  # Update and install
+  sudo apt-get update -y
+  sudo apt-get install -y codium
+fi
