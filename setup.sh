@@ -113,7 +113,8 @@ read -p 'Do you want to install Bat? (y/n) ' -n 1 -r
 echo
 if [[ $REPLY =~ ^[Yy]$ ]]
 then
-  sudo apt-get install -y bat
+  #sudo apt-get install -y bat
+  sudo apt-get -o Dpkg::Options::="--force-overwrite" install -y bat
 
   ln -s "$BASEDIR"/bash_/bat.bash "$BASHDIR"/bat.bash
 fi
