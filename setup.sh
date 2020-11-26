@@ -1,6 +1,6 @@
 #!/usr/bin/bash
 
-# SYSTEM UPDATE 
+# SYSTEM UPDATE
 echo
 read -p 'Do you want to update your system? (y/n) ' -n 1 -r
 echo
@@ -32,7 +32,7 @@ cd "$SRCDIR" || exit
 cd "$HOME" || exit
 
 #    ╔═╗┌─┐┌─┐┌┬┐┬ ┬┌─┐┬─┐┌─┐
-#    ╚═╗│ │├┤  │ │││├─┤├┬┘├┤ 
+#    ╚═╗│ │├┤  │ │││├─┤├┬┘├┤
 #    ╚═╝└─┘└   ┴ └┴┘┴ ┴┴└─└─┘
 echo
 read -p 'Do you want to install software? (y/n) ' -n 1 -r
@@ -41,7 +41,7 @@ if [[ $REPLY =~ ^[Yy]$ ]]
 then
   cat <<"EOF"
     ╔═╗┌─┐┌─┐┌┬┐┬ ┬┌─┐┬─┐┌─┐
-    ╚═╗│ │├┤  │ │││├─┤├┬┘├┤ 
+    ╚═╗│ │├┤  │ │││├─┤├┬┘├┤
     ╚═╝└─┘└   ┴ └┴┘┴ ┴┴└─└─┘
 EOF
 
