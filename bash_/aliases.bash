@@ -27,7 +27,9 @@ alias cp='cp -i'
 alias ln='ln -i'
 
 # update on one command
-alias update='sudo apt-get update && sudo apt-get upgrade'
+alias update='sudo apt-get update -y \
+  && sudo apt-get upgrade -y \
+  && sudo apt-get autoremove'
 
 # become root #
 alias root='sudo -i'
@@ -54,40 +56,3 @@ alias l='ls -CF'
 function mans {
   man $1 | less -p "^ +$2"
 }
-
-# GOOGLER
-alias googler='googler -n7'
-
-# SHERLOCK
-alias sherlock='python3 $HOME/src/sherlock/sherlock --site facebook --site instagram --site twitter --site youtube --site linkedin --output /dev/null'
-
-# BAT
-if [ "$(command -v batcat)" ]; then
-  alias bat='batcat'
-  alias cat='batcat -pp'
-
-  battail() {
-    tail -f $1 | batcat --paging=never -l log
-  }
-
-fi
-
-
-# EXA
-if [ "$(command -v exa)" ]; then
-    unalias 'll'
-    unalias 'ls'
-    alias ls='exa -Ga --group-directories-first --color auto --icons -s type'
-    alias ll='exa -laagh --group-directories-first --color always --color-scale --icons -s type'
-
-    ltree() {
-      if [ -z $1 ]; then
-        echo "Debe especificar un valor numérico para la profundidad del árbol. (Usando un valor de 1 por defecto)"
-	PROF=1
-      else
-	PROF=$1
-      fi
-
-      exa -agh -T -L $PROF $2
-    }
-fi
