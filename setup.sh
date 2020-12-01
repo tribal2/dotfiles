@@ -10,6 +10,25 @@ then
   sudo apt-get upgrade -y
 fi
 
+# TIMEZONE
+echo
+echo 'These are your actual time settings:'
+timedatectl
+echo
+read -p 'Do you want to change your system timezone? (y/n) ' -n 1 -r
+echo
+if [[ $REPLY =~ ^[Yy]$ ]]
+then
+  read -p 'Time zone (eg: America/Panama): '
+  if [[ ! -z $REPLY ]]
+  then
+    sudo timedatectl set-timezone $REPLY
+    echo 'These are your new time settings:'
+    timedatectl
+  fi
+  echo
+fi
+
 # GIT install
 if ! command -v git &> /dev/null
 then
