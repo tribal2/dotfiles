@@ -10,7 +10,8 @@ export FZF_DEFAULT_OPTS="
   --border
   --multi
   --bind '?:toggle-preview'
-  --bind 'ctrl-a:select-all'
+  --bind 'ctrl-a:toggle-all'
+  --bind 'ctrl-l:execute(less {})'
   --bind 'ctrl-y:execute-silent(echo {+} | xclip)'
   --bind 'ctrl-e:execute(echo {+} | xargs -o vim)'
   --bind 'ctrl-v:execute(code {+} || codium {+})'
