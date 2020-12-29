@@ -9,6 +9,14 @@ else
   ln -sf "$BASEDIR"/bash_/fzf.bash "$BASHDIR"/fzf.bash
 fi
 
+# https://github.com/hankchanocd/npm-fzf
+read -p 'Do you want to install NPM-FZF (fuzzy search npm modules with fzf)? (y/n) ' -n 1 -r
+echo
+if [[ $REPLY =~ ^[Yy]$ ]]
+then
+  sudo npm install -g npm-fzf
+fi
+
 # https://github.com/wfxr/forgit.git
 if [[ ! -d "$SRCDIR"/forgit ]]
 then
