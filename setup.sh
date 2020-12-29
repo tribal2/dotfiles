@@ -58,7 +58,7 @@ read -p 'Do you want to install software? (y/n) ' -n 1 -r
 echo
 if [[ $REPLY =~ ^[Yy]$ ]]
 then
-  cat <<"EOF"
+  cat <<EOF
     ╔═╗┌─┐┌─┐┌┬┐┬ ┬┌─┐┬─┐┌─┐
     ╚═╗│ │├┤  │ │││├─┤├┬┘├┤
     ╚═╝└─┘└   ┴ └┴┘┴ ┴┴└─└─┘
@@ -89,7 +89,7 @@ read -p 'Do you want to install CLI-tools? (y/n) ' -n 1 -r
 echo
 if [[ $REPLY =~ ^[Yy]$ ]]
 then
-  cat <<"EOF"
+  cat <<EOF
     ╔═╗╦  ╦  ┌┬┐┌─┐┌─┐┬  ┌─┐
     ║  ║  ║   │ │ ││ ││  └─┐
     ╚═╝╩═╝╩   ┴ └─┘└─┘┴─┘└─┘
