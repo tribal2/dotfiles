@@ -56,3 +56,20 @@ alias l='ls -CF'
 function mans {
   man $1 | less -p "^ +$2"
 }
+
+# find-in-file - usage: fif <SEARCH_TERM>
+fif() {
+  if [ ! "$#" -gt 0 ];
+  then
+    echo "Need a string to search for!";
+    return 1;
+  fi
+
+  # @TODO: use grep if rg is not available
+  if command -v rg &> /dev/null
+  then
+    rg --files-with-matches --no-messages "$1" \
+      | fzf $FZF_PREVIEW_WINDOW --preview "rg --ignore-case --pretty --context 10 '$1' {}"
+  fi
+}
+
