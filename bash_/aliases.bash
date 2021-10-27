@@ -1,6 +1,7 @@
 #!/usr/bin/bash
 
 alias c="clear"
+alias cdc="cd ~; clear;"
 alias h='history'
 alias hg='history | grep -i'
 alias :q="exit"
@@ -23,7 +24,7 @@ alias fgrep='fgrep --color=auto'
 
 # confirmation #
 alias mv='mv -i'
-alias cp='cp -i'
+alias cp='cp -ip'
 alias ln='ln -i'
 
 # update on one command
@@ -48,7 +49,7 @@ if [ -x /usr/bin/dircolors ]; then
 fi
 
 # some more ls aliases
-alias ll='ls -alF'
+alias ll='ls -lahvF --group-directories-first'
 alias la='ls -A'
 alias l='ls -CF'
 
