@@ -22,6 +22,9 @@ call plug#end()
 
 set encoding=utf-8
 
+" Background
+set background=dark
+
 " Tabs a 2 espacios
 filetype plugin indent on
 set tabstop=2
