@@ -1,11 +1,21 @@
 #!/usr/bin/bash
 
-# .bashrc
+BACKUP_TAG=.bak_$(date +\%y\%m\%d)
+
+echo 'Backing up actual .bashrc and .bash_aliases...'
 cd
-mv .bashrc{,.bak}
-mv .bash_aliases{,.bak}
+mv .bashrc{,$BACKUP_TAG}
+mv .bash_aliases{,$BACKUP_TAG}
 
-curl https://raw.githubusercontent.com/tribal2/dotfiles/master/.bashrc --output .bashrc
-curl https://raw.githubusercontent.com/tribal2/dotfiles/master/bash_/aliases.bash --output .bash_aliases
+echo 'Downloading Bash config files from tribal2/dotfiles...'
+curl https://raw.githubusercontent.com/tribal2/dotfiles/master/.bashrc \
+  --silent \
+  --output .bashrc
+curl https://raw.githubusercontent.com/tribal2/dotfiles/master/bash_/aliases.bash \
+  --silent \
+  --output .bash_aliases
 
+echo 'Sourcing new Bash files...'
 source .bashrc
+
+echo 'Bash setup done!'
