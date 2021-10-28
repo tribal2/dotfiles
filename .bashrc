@@ -159,6 +159,8 @@ if [ -f ~/.localrc ]; then
   source ~/.localrc
 fi
 
-for FILE in ~/.config/bash/*; do
-  source $FILE;
-done
+if [[ -d ~/.config/bash ]]; then
+  for FILE in ~/.config/bash/*; do
+    source $FILE;
+  done
+fi
