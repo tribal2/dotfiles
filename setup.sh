@@ -113,5 +113,6 @@ EOF
 fi
 
 ln -sf "$BASEDIR"/bash_/aliases.bash "$BASHDIR"/aliases.bash
+ln -sf "$BASEDIR"/bash_/docker.bash "$BASHDIR"/docker.bash
 ln -sf "$BASEDIR"/.bashrc "$HOME"/.bashrc
 source "$HOME"/.bashrc
