@@ -2,7 +2,7 @@
 
 # SYSTEM UPDATE
 echo
-read -p 'Do you want to update your system? (y/n) ' -n 1 -r
+read -p 'Do you want to update your system? (y/n) ' -n 1 -r  < /dev/tty
 echo
 if [[ $REPLY =~ ^[Yy]$ ]]
 then
@@ -15,11 +15,11 @@ echo
 echo 'These are your actual time settings:'
 timedatectl
 echo
-read -p 'Do you want to change your system timezone? (y/n) ' -n 1 -r
+read -p 'Do you want to change your system timezone? (y/n) ' -n 1 -r  < /dev/tty
 echo
 if [[ $REPLY =~ ^[Yy]$ ]]
 then
-  read -p 'Time zone (eg: America/Panama): '
+  read -p 'Time zone (eg: America/Panama): '  < /dev/tty
   if [[ ! -z $REPLY ]]
   then
     sudo timedatectl set-timezone $REPLY
@@ -54,7 +54,7 @@ cd "$HOME" || exit
 #    ╚═╗│ │├┤  │ │││├─┤├┬┘├┤
 #    ╚═╝└─┘└   ┴ └┴┘┴ ┴┴└─└─┘
 echo
-read -p 'Do you want to install software? (y/n) ' -n 1 -r
+read -p 'Do you want to install software? (y/n) ' -n 1 -r  < /dev/tty
 echo
 if [[ $REPLY =~ ^[Yy]$ ]]
 then
@@ -70,7 +70,7 @@ EOF
     EXTENSION="${FILENAME##*.}"
     FILE="${FILENAME%.*}"
     echo
-    read -p "Do you want to install $FILE? (y/n) " -n 1 -r
+    read -p "Do you want to install $FILE? (y/n) " -n 1 -r  < /dev/tty
     echo
     if [[ $REPLY =~ ^[Yy]$ ]]
     then
@@ -85,7 +85,7 @@ fi
 #   ║  ║  ║   │ │ ││ ││  └─┐
 #   ╚═╝╩═╝╩   ┴ └─┘└─┘┴─┘└─┘
 echo
-read -p 'Do you want to install CLI-tools? (y/n) ' -n 1 -r
+read -p 'Do you want to install CLI-tools? (y/n) ' -n 1 -r  < /dev/tty
 echo
 if [[ $REPLY =~ ^[Yy]$ ]]
 then
@@ -101,7 +101,7 @@ EOF
     EXTENSION="${FILENAME##*.}"
     FILE="${FILENAME%.*}"
     echo
-    read -p "Do you want to install $FILE? (y/n) " -n 1 -r
+    read -p "Do you want to install $FILE? (y/n) " -n 1 -r  < /dev/tty
     echo
     if [[ $REPLY =~ ^[Yy]$ ]]
     then
