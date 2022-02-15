@@ -18,7 +18,7 @@ curl https://raw.githubusercontent.com/tribal2/dotfiles/master/bash_/aliases.bas
   --output .bash_aliases
 
 echo
-read -p 'Do you want to include Docker aliases? (y/n) ' -n 1 -r
+read -p 'Do you want to include Docker aliases? (y/n) ' -n 1 -r < /dev/tty
 echo
 if [[ $REPLY =~ ^[Yy]$ ]]
 then
