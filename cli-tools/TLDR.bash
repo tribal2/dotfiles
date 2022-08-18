@@ -6,7 +6,7 @@ then
 else
   # Bin
   sudo curl -fLo /usr/local/bin/tldr \
-    https://github.com/dbrgn/tealdeer/releases/download/v1.4.1/tldr-linux-x86_64-musl
+    https://github.com/dbrgn/tealdeer/releases/download/v1.5.0/tealdeer-linux-x86_64-musl
   sudo chmod +x /usr/local/bin/tldr
 
   # Cache update
@@ -14,5 +14,5 @@ else
 
   # Bash autocompletions
   sudo curl -fLo /usr/share/bash-completion/completions/tldr \
-    https://github.com/dbrgn/tealdeer/releases/download/v1.4.1/completions_bash
+    https://github.com/dbrgn/tealdeer/releases/download/v1.5.0/completions_bash
 fi
