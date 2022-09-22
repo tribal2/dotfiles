@@ -32,7 +32,7 @@ fi
 # GIT install
 if ! command -v git &> /dev/null
 then
-  sudo apt-get install -y git
+  source gitsetup.sh
 fi
 
 # DIRNAMES
