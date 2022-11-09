@@ -56,6 +56,15 @@ if [[ $REPLY =~ ^[Yy]$ ]] then
   # git ll -> Oneline log
   git config --global alias.ll 'log --pretty=format:"%C(magenta)%h%Creset -%C(red)%d%Creset %s %C(dim green)(%cr) [%an]" --abbrev-commit -30'
 
+  # Modify author of previous commits
+  # https://stackoverflow.com/a/11768843/440898
+  # Usage:
+  # 1. To change the author name:
+  #    git change-commits GIT_AUTHOR_NAME "old name" "new name"
+  # 2. The email for only the last 10 commits:
+  #    git change-commits GIT_AUTHOR_EMAIL "old@email.com" "new@email.com" HEAD~10..HEAD
+  git config --global alias.change-commits '!'"f() { VAR=\$1; OLD=\$2; NEW=\$3; shift 3; git filter-branch --env-filter \"if [[ \\\"\$\`echo \$VAR\`\\\" = '\$OLD' ]]; then export \$VAR='\$NEW'; fi\" \$@; }; f"
+
   # Other aliases
   git config --global alias.co checkout
   git config --global alias.br branch
