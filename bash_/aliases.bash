@@ -95,6 +95,7 @@ alias to='function _to() { cd "$@" && tree; }; _to'
 alias du1='du -h -d 1'
 alias biggest="du -h --max-depth=1 | sort -h"
 alias sizes="du -shc"
+alias sizes_sorted='du -sch .[!.]* * | sort -h'
 
 # Show all files sorted by modification date, the most recent first.
 alias lr='ls -ltr'
